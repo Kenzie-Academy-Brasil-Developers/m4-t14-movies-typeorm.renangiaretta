@@ -10,7 +10,11 @@
   // Obriga o desenvolvedor a tipar tudo no código
     "strict": true,
     "exactOptionalPropertyTypes": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+  // Faz algo
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
     },
   // quando compilar o typescript, inclui todo o src e desconsidera o node_modules
     "include": ["src"],
