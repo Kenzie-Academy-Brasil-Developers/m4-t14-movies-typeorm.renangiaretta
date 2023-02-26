@@ -5,14 +5,13 @@ import {
 } from 'typeorm'
 
 
-// Engloba a classe de "Movie" em uma "Entity"
-@Entity('movies') // A tabela no banco de dados se chamará users
+@Entity('movies')
 class Movie {
 
-    @PrimaryGeneratedColumn('increment') //  Vai dizer ao banco de dados para gerar uma coluna primary key SERIAL
+    @PrimaryGeneratedColumn('increment')
     id: number
 
-    @Column({ length: 50, unique: true })
+    @Column({ type: 'varchar', length: 50, unique: true })
     name: string
 
     @Column({ type: 'text', nullable: true })
@@ -23,7 +22,6 @@ class Movie {
 
     @Column()
     price: number
-
 
 }
 

@@ -11,7 +11,8 @@ import { movieSchema, listMovieSchema, updateMovieSchema } from "../schemas"
 const createMovieService = async ( payload: any )=> {
     const movieRepo: iMovieRepo = AppDataSource.getRepository(Movie)
     const movie: Movie = await movieRepo.save(payload)
-    return movieSchema.parse(movie)
+    const validatedMovie =  movieSchema.parse(movie)
+    return validatedMovie
 }
 
 const getMoviesService = async ( ): Promise<iListMovie> => {
@@ -25,25 +26,18 @@ const getMoviesService = async ( ): Promise<iListMovie> => {
 const updateMovieService = async ( id: number, payload: any ) => {
     const movieRepo: iMovieRepo = AppDataSource.getRepository(Movie)
     const foundMovie: Movie | null = await movieRepo.findOneBy({id})
-    if(!foundMovie) {
-        throw new AppError('Movie not found.', 404)
-    }
     const movieUpdate: Movie = await movieRepo.save({
         ...foundMovie,
         ...payload
     })
-    return updateMovieSchema.parse(movieUpdate)
+    const validatedSchema = updateMovieSchema.parse(movieUpdate)
+    return validatedSchema
 }
 
 const deleteMovieService = async ( id: number ) => {
     const movieRepo: iMovieRepo = AppDataSource.getRepository(Movie)
-    const foundMovie: Movie | null = await movieRepo.findOneBy({
-        id
-    })
-    if (!foundMovie) {
-        throw new AppError('Movie not found', 404)
-    }
-    await movieRepo.remove(foundMovie)
+    const foundMovie: Movie | null = await movieRepo.findOneBy({id})
+    await movieRepo.remove(foundMovie!)
 }
 
 export { createMovieService, getMoviesService, updateMovieService, deleteMovieService }
