@@ -1,4 +1,8 @@
-import { ensureDataIsValidMiddleware, verifyIfMovieExistsMiddleware, verifyMovieIdMiddleware } from "./movies.middleware";
+import {
+    ensureDataIsValidMiddleware,
+    verifyIfMovieExistsMiddleware,
+    verifyMovieIdMiddleware
+} from './movies.middleware';
 
 
 

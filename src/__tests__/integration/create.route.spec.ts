@@ -107,9 +107,9 @@ describe('POST /movies', () => {
       status: 400,
       bodyMessage: {
         message: {
-          price: ['Required'],
           name: ['Expected string, received number'],
           duration: ['Expected number, received string'],
+          price: ['Required'],
         },
       },
     };

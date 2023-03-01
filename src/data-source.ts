@@ -31,19 +31,19 @@ const dataSourceConfig = (): DataSourceOptions => {
     if(nodeEnv === 'test') {
         return {
             type: 'sqlite',
-            database: ':memory',
+            database: ':memory:',
             synchronize: true,
             entities: [ entitiesPath ]
         }
     }
 
     return {
-        type: 'postgres',
-        url: dbUrl,
+        type       : 'postgres',
+        url        : dbUrl,
         synchronize: false,
-        logging: true,
-        migrations: [ migrationsPath ],
-        entities: [ entitiesPath ]
+        logging    : true,
+        migrations : [ migrationsPath ],
+        entities   : [ entitiesPath ]
     }
 }
 
